@@ -10,6 +10,24 @@ import org.junit.Test;
 public class CodeHackTest {
 
 	@Test
+	public void testBinarySearchRec() {
+		int[] list = { 1, 4, 5, 2, 8, 9 };
+		CodeHack.quickSort(list, 0, list.length-1);
+		
+		assertEquals( 4, CodeHack.binarySearchRec(list, 8, 0, list.length-1) );
+		assertEquals( 2, CodeHack.binarySearchRec(list, 4, 0, list.length-1) );
+	}
+	
+	@Test
+	public void testBinarySearch() {
+		int[] list = { 1, 4, 5, 2, 8, 9 };
+		CodeHack.quickSort(list, 0, list.length-1);
+		
+		assertEquals( 4, CodeHack.binarySearch(list, 8) );
+		assertEquals( 2, CodeHack.binarySearch(list, 4) );
+	}
+	
+	@Test
 	public void testQuickSort() {
 		int[] list = { 1, 4, 5, 2, 8, 9 };
 		int[] sortedList = { 1, 2, 4, 5, 8, 9 };
