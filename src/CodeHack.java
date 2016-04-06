@@ -121,7 +121,7 @@ public class CodeHack {
 		int pnumCnt = 0;
 		for (int i = 0; i < flags.length; i++) {
 			if( flags[i] )	{
-				System.out.print(i + ",");
+//				System.out.print(i + ",");
 				pnumCnt++;
 			}
 		}
@@ -148,19 +148,13 @@ public class CodeHack {
 			if( prime > flags.length )	break;
 		}
 
-		System.out.print("2,");
 		for (int i = 2; i < flags.length; i++) {
 			if( flags[i] && i*2-1 <= n )	{
-//				System.out.print(i+",");
-				System.out.print(i*2-1+",");
+//				System.out.print(i*2-1+",");
 				primeCnt++;
 			}
 		}
-		System.out.println( "Adv Prime Cnt: " + primeCnt );
-
-//		for (int i = 1; i < flags.length; i++) {
-//			System.out.println( i+": " + (i*2-1) );
-//		}
+		System.out.println( " Adv Prime Cnt: " + primeCnt );
 		
 		return primeCnt;
 	}

@@ -48,7 +48,7 @@ public class CodeHackTest {
 	}
 	
 	@Test
-	public void testsieveOfEratosthenes() {
+	public void testSieveOfEratosthenes() {
 		assertEquals( 3, CodeHack.SOE(5) );
 		assertEquals( 4, CodeHack.SOE(7) );
 		assertEquals( 25, CodeHack.SOE(100) );
@@ -63,7 +63,7 @@ public class CodeHackTest {
 	}
 	
 	@Test
-	public void testisPrime() {
+	public void testIsPrime() {
 		assertEquals( true, CodeHack.isPrime(17) );
 		assertEquals( false, CodeHack.isPrime(4) );
 		assertEquals( true, CodeHack.isPrime(2) );
