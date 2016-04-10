@@ -106,4 +106,91 @@ public class CHP {
 		}
 	}
 
+	public static String compressBF(String str) {
+		String compressedStr = "";
+		char c = str.charAt(0);
+		int charCnt = 1;
+		
+		for (int i = 1; i < str.length(); i++) {
+			if( c == str.charAt(i) )	charCnt++;
+			else	{
+				compressedStr += (c + "" + charCnt);
+				c = str.charAt(i);
+				charCnt = 1;
+			}
+		}
+		
+		//	caution: append last check result
+		if( str.length() > compressedStr.length() )	return compressedStr + (c + "" + charCnt);
+		else	return str;
+	}
+
+	//	w/ StringBuffer
+	public static String compressSB(String str) {
+		StringBuffer compStr = new StringBuffer();
+
+		char last = str.charAt(0);
+		int charCnt = 1;
+		for (int i = 1; i < str.length(); i++) {
+			if( str.charAt(i) == last )	charCnt++;
+			else	{
+				compStr.append(last).append(charCnt);
+				last = str.charAt(i);
+				charCnt = 1;
+			}
+		}
+
+		String result = compStr.append(last).append(charCnt).toString();
+		if( str.length() < result.length() )	return str;
+		else	return result;
+	}
+
+	public static String compressAlter(String str) {
+		int size = countComp( str );
+		if( size > str.length() )	return str;
+		
+		char[] result = new char[size];
+		char last = str.charAt(0);
+		int charCnt = 1;
+		int index = 0;
+		for (int i = 1; i < str.length(); i++) {
+			if( last == str.charAt(i) )	charCnt++;
+			else	{
+				index = setChar( str, result, last, index, charCnt );
+				last = str.charAt(i);
+				charCnt = 1;
+			}
+		}
+		
+		setChar( str, result, last, index, charCnt );
+		return String.valueOf(result);
+	}
+
+	private static int setChar(String str, char[] result, char last, int index, int charCnt) {
+		result[index] = last;
+		index++;
+		
+		char[] cnt = String.valueOf(charCnt).toCharArray();
+		for (char c : cnt) {
+			result[index] = c;
+			index++;
+		}
+		
+		return index;
+	}
+
+	private static int countComp(String str) {
+		char last = str.charAt(0);
+		int totalLen = 0;
+		
+		for (int i = 0; i < str.length(); i++) {
+			if( last != str.charAt(i) )	{
+				last = str.charAt(i);
+				totalLen += 2;
+			}
+		}
+		
+		return totalLen+2;
+	}
+
 }

@@ -4,7 +4,43 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: compress String, aabccccccccaaa -> a2b1c8a3, if) abc -> a1b1c1 => just ori return
+	 * 	sol2: Brute-Force w/ char process instead of StringBuffer. Ot(p+k)
+	 */
+	@Test
+	public void testCompressStrAlter() {
+		String s1 = "aabccccccccaaa";
+		assertEquals( "a2b1c8a3", CHP.compressAlter(s1) );
+		
+		String s2 = "abc";
+		assertEquals( "abc", CHP.compressAlter(s2) );
+	}
+
 	
+	/*	P: compress String, aabccccccccaaa -> a2b1c8a3, if) abc -> a1b1c1 => just ori return
+	 * 	sol1: Brute-Force w/ StringBuffer. Ot(p+k)
+	 */
+	@Test
+	public void testCompressStrWStrBuf() {
+		String s1 = "aabccccccccaaa";
+		assertEquals( "a2b1c8a3", CHP.compressSB(s1) );
+		
+		String s2 = "abc";
+		assertEquals( "abc", CHP.compressSB(s2) );
+	}
+
+	
+	/*	P: compress String, aabccccccccaaa -> a2b1c8a3, if) abc -> a1b1c1 => just ori return
+	 * 	sol1: Brute-Force. Ot(p+k^2) because of Java Str copy's Ot(n^2)
+	 */
+	@Test
+	public void testCompressStr() {
+		String s1 = "aabccccccccaaa";
+		assertEquals( "a2b1c8a3", CHP.compressBF(s1) );
+		
+		String s2 = "abc";
+		assertEquals( "abc", CHP.compressBF(s2) );
+	}
 	
 	/*	P: convert WS -> '%20' in str.
 	 * 	sol2: processing from last to first of str.
