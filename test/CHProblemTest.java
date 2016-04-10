@@ -4,6 +4,8 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	
+	
 	/*	P: convert WS -> '%20' in str.
 	 * 	sol2: processing from last to first of str.
 	 */

@@ -82,11 +82,14 @@ public class CHP {
 	 * second, scan w/ reverse direction for replace %20.
 	 */
 	public static void replaceSpaces(char[] cs, int length) {
+		// scan 4 WS cnt -> use extra array based on new length(ori array + extra array)
 		int spaceCnt = 0;
 		for (int i = 0; i < length; i++) {
 			if( cs[i] == ' ' )	spaceCnt++;
 		}
 		
+		//	reverse direction scan for not considering ori array
+		//	because result array will be longer array than ori array.
 		int newLength = length + (spaceCnt * 2);
 		cs[newLength] = '\0';
 		for (int i = length-1; i >= 0; i--) {
