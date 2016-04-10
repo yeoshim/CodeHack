@@ -4,6 +4,30 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: convert WS -> '%20' in str.
+	 * 	sol2: processing from last to first of str.
+	 */
+	@Test
+	public void testReplaceSpaces() {
+		char[] strBuf = new char[100];
+		String s1 = "Hi  code hack !!! ";
+		String s2 = "Hi%20%20code%20hack%20!!!%20";
+		
+		char[] chars = s1.toCharArray();
+		for (int i = 0; i < chars.length; i++) {
+			strBuf[i] = chars[i];
+		}
+		
+		CHP.replaceSpaces( strBuf, s1.length() );
+		
+		char[] actual = new char[s2.length()];
+		for (int i = 0; i < s2.length(); i++) {
+			actual[i] = strBuf[i];
+		}
+		
+		assertArrayEquals( s2.toCharArray(), actual );
+	}
+	
 	/*	P: Check permutation relation between s1 and s2 => make new str, changing chars ordering(Anagram problem)
 	 *  Q: check char set (ASCII or Unicode) => ASCII
 	 * 	sol2: check char count.

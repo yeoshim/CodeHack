@@ -77,4 +77,30 @@ public class CHP {
 		return true;
 	}
 
+	/*
+	 * first, scan for checking WS cnt.
+	 * second, scan w/ reverse direction for replace %20.
+	 */
+	public static void replaceSpaces(char[] cs, int length) {
+		int spaceCnt = 0;
+		for (int i = 0; i < length; i++) {
+			if( cs[i] == ' ' )	spaceCnt++;
+		}
+		
+		int newLength = length + (spaceCnt * 2);
+		cs[newLength] = '\0';
+		for (int i = length-1; i >= 0; i--) {
+			if( cs[i] == ' ' )	{
+				cs[newLength-1] = '0';
+				cs[newLength-2] = '2';
+				cs[newLength-3] = '%';
+				newLength -= 3;
+			}
+			else	{
+				cs[newLength-1] = cs[i];
+				newLength -= 1;
+			}
+		}
+	}
+
 }
