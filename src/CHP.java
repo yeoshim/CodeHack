@@ -193,4 +193,45 @@ public class CHP {
 		return totalLen+2;
 	}
 
+	/*
+	 * 01, 02, 03, 04
+	 * 05, 06, 07, 08
+	 * 09, 10, 11, 12
+	 * 13, 14, 15, 16
+	 * 		 |
+	 * 		 V
+	 * 13, 09, 05, 01
+	 * 14, 10, 06, 02
+	 * 15, 11, 07. 03
+	 * 16, 12, 08, 04
+	 * 
+	 * #. note!!!
+	 * 1. left/bottom: reverse change, top/right: normal change
+	 * 2. use offset 4 considering layer when layer > 0 
+	 * => offset = i-first(layer) => last - offset(i-first)
+	 */
+	public static void rotateImg(int[][] img, int n) {
+		//	4 -> 4/2=2 repeat
+		for( int layer = 0; layer < n/2; layer++ )	{	//	0,1
+			int first = layer;
+			int last = n-layer-1;	//	for note1
+			for( int i = first; i < last; i++ )	{	//	0->0-3, 1->1-2
+				int offset = i-first;	//	for note2
+
+				int top = img[first][i];
+				// left [i][0] -> top [0][i]
+				img[first][i] = img[last-offset][first];
+				
+				// bottom [3][i] -> left [i][0]
+				img[last-offset][first] = img[last][last-offset];
+				
+				//	right [i][3] -> bottom [3][i]
+				img[last][last-offset] = img[i][last];
+				
+				//	top [0][i] -> right [i][3]
+				img[i][last] = top;
+			}
+		}
+	}
+
 }

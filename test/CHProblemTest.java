@@ -4,6 +4,41 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: rotate img 90 (4 x 4)
+	 * 	sol1: Brute-Force & Ot(n^2), this is best.
+	 * 
+	 * #. note!!!
+	 * 1. left/bottom: reverse change, top/right: normal change
+	 * 2. use offset 4 considering layer when layer > 0 
+	 * => offset = i-first(layer) => last - offset(i-first)
+	 */
+	@Test
+	public void testRotateImg() {
+		/*
+		 * 01, 02, 03, 04
+		 * 05, 06, 07, 08
+		 * 09, 10, 11, 12
+		 * 13, 14, 15, 16
+		 * 		 |
+		 * 		 V
+		 * 13, 09, 05, 01
+		 * 14, 10, 06, 02
+		 * 15, 11, 07. 03
+		 * 16, 12, 08, 04
+		 */
+		int[][] img = new int[4][4];
+		for (int i = 0; i < img.length; i++) {
+			for (int j = 0; j < img.length; j++) {
+				img[i][j] = j+(i*img.length)+1;
+			}
+		}
+
+		CHP.rotateImg( img, img[0].length );
+		
+		int[] expected = {13, 9, 5, 1};
+		assertArrayEquals(expected, img[0]);
+	}
+	
 	/*	P: compress String, aabccccccccaaa -> a2b1c8a3, if) abc -> a1b1c1 => just ori return
 	 * 	sol2: Brute-Force w/ char process instead of StringBuffer. Ot(p+k)
 	 */
