@@ -4,6 +4,20 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: check substring which is rotated string
+	 * 	sol1: 
+	 *  if s2 is s1's rotated string, s1 = xy, s2 = yx
+	 *  and yx is substring of xyxy => s2 is substring of s1s1
+	 *  that is, subString( s1s1, s2 )
+	 */
+	@Test
+	public void testIsSubString() {
+		String s1 = "waterbottle";
+		String s2 = "erbottlewat";
+		assertTrue( CHP.isRotation(s1, s2) );
+		assertFalse( CHP.isRotation(s1, "erbottlewa1") );
+	}
+	
 	/*	P: At MxN matrix if [i][j] = 0, [i][*] = 0 and [*][j] = 0
 	 * 	sol: first check 0 then set 0 because check and replace will become all 0
 	 * => Ot(N^M), Os(MN)

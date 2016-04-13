@@ -256,4 +256,11 @@ public class CHP {
 		}
 	}
 
+	public static boolean isRotation(String s1, String s2) {
+		if( s1.length() != s2.length() )	return false;
+		if( s1.length() == 0 )	return false;
+		
+		return s1.concat(s1).contains(s2);
+	}
+
 }
