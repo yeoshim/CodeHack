@@ -4,6 +4,47 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: At MxN matrix if [i][j] = 0, [i][*] = 0 and [*][j] = 0
+	 * 	sol: first check 0 then set 0 because check and replace will become all 0
+	 * => Ot(N^M), Os(MN)
+	 *  sol2: use bit vector => Os(x<MN)	// not implemented
+	 */
+	@Test
+	public void testSetZero() {
+		/*
+		 * 00, 02, 03, 04
+		 * 05, 06, 00, 08
+		 * 09, 10, 11, 12
+		 * 13, 14, 15, 16
+		 * 		 |
+		 * 		 V
+		 * 00, 00, 00, 00
+		 * 00, 00, 00, 00
+		 * 00, 10, 00, 12
+		 * 00, 14, 00, 16
+		 */
+		int[][] matrix = new int[4][4];
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix.length; j++) {
+				matrix[i][j] = j+(i*matrix.length)+1;
+			}
+		}
+		matrix[0][0] = 0;
+		matrix[1][2] = 0;
+
+		CHP.setZero( matrix );
+		
+		int[] expected = {0, 0, 0, 0};
+		assertArrayEquals(expected, matrix[0]);
+		assertArrayEquals(expected, matrix[1]);
+		assertEquals(0, matrix[2][0]);
+		assertEquals(0, matrix[2][2]);
+		assertEquals(0, matrix[3][0]);
+		assertEquals(0, matrix[3][2]);
+		assertNotEquals(0, matrix[3][3]);
+	}
+		
+	
 	/*	P: rotate img 90 (4 x 4)
 	 * 	sol1: Brute-Force & Ot(n^2), this is best.
 	 * 
