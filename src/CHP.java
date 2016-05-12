@@ -1,8 +1,12 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Hashtable;
 
 public class CHP {
+
+	private static final int MAX_CACHE = 100;
+	private static int[][] cache = new int[MAX_CACHE][MAX_CACHE];
 
 	/*	P: Check unique chars in a String
 	 * 	is ASCII or Unicode
@@ -238,7 +242,7 @@ public class CHP {
 		boolean[] row = new boolean[matrix.length];
 		boolean[] column = new boolean[matrix[0].length];
 		
-		for (int i = 0; i < matrix.length; i++) {
+		for (int i = 0; i < matrix.length; i++) {	
 			for (int j = 0; j < matrix[0].length; j++) {
 				if( matrix[i][j] == 0 )	{
 					row[i] = true;
@@ -263,4 +267,43 @@ public class CHP {
 		return s1.concat(s1).contains(s2);
 	}
 
+	public static LLNode<Character> deleteDups(LLNode<Character> llNode) {
+		Hashtable<Character, Boolean> table = new Hashtable<>();
+		LLNode<Character> previous = null;
+		while( llNode != null )	{
+			if( table.containsKey(llNode.value()) )	{
+				previous.next = llNode.next;
+			}
+			else	{
+				table.put(llNode.value(), true);
+				previous = llNode;
+			}
+			llNode = llNode.next;
+		}
+		
+		return previous;
+	}
+
+	//	bino(n, r) = bino(n-1, r-1) + bino(n-1, r)
+	public static int bino(int n, int r) {
+		if( r == 0 || n == r )	return 1;
+		
+		return bino(n-1, r-1) + bino(n-1, r);
+	}
+
+	public static int bino2(int n, int r) {
+		if( r == 0 || n == r )	return 1;
+		
+		if( cache[n][r] != -1 ) return cache[n][r]; 
+		
+		return cache[n][r] = bino(n-1, r-1) + bino(n-1, r);
+	}
+
+	public static void initCache() {
+		for (int i = 0; i < MAX_CACHE; i++) {
+			for (int j = 0; j < MAX_CACHE; j++) {
+				cache[i][j] = -1;
+			}
+		}
+	}
 }

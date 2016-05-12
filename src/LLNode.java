@@ -1,43 +1,42 @@
 
-public class LLNode {
+public class LLNode<T> {
 
-	private int value = -1;
-	private LLNode next = null;
+	private T value;
+//	private LLNode<T> next = null;
+	public LLNode<T> next = null;
 
-	public LLNode(int value) {
+	public LLNode(T value) {
 		this.value = value;
 	}
 
-
-	public LLNode() {
-		// TODO Auto-generated constructor stub
-	}
+	public LLNode() {}
 
 
-	public void appendToTail(int value) {
-		LLNode end = new LLNode(value);
+	public void appendToTail(T value) {
+		LLNode<T> end = new LLNode<T>(value);
 		this.next = end;
 	}
 
-	public LLNode get(int idx) {
-		LLNode node = this;
+	public LLNode<T> get(int idx) {
+		LLNode<T> node = this;
 		int cnt = 0;
 		while( this.next != null && cnt < idx )	{
 			node = node.next;
 			cnt++;
 		}
 
-		if( cnt < idx )	return new LLNode(-1);	//	null
+//		if( cnt < idx )	return new LLNode(-1);	//	null
+		if( cnt < idx )	return new LLNode<T>();	//	null
 		
 		return node;
 	}
 
-	public int value() {
+	public T value() {
 		return this.value;
 	}
 
-	public LLNode delNode(LLNode head, int value) {
-		LLNode node = head;
+	public LLNode<T> delNode(LLNode<T> head, T value) {
+		LLNode<T> node = head;
 		
 		if( node.value == value )	{
 			//	node가 1개인 경우
