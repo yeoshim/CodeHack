@@ -16,36 +16,50 @@ public class CHProblemTest {
 		assertEquals(6, CHP.bino(4, 2));
 	}
 	
-	
-	/*	P: delete duplicate chars in string w/ unsorted linked list
-	 * 	sol1: 
-	 *  if s2 is s1's rotated string, s1 = xy, s2 = yx
-	 *  and yx is substring of xyxy => s2 is substring of s1s1
-	 *  that is, subString( s1s1, s2 )
+	/*	P: delete duplicate chars in a string which is made by unsorted linked list.
+	 * 	sol1: hashTable 
 	 */
-/*	@Test
+	@Test
 	public void testDeleteDups() {
-		String s1 = "hellohello";
-		String s2 = "helo";
+		String s1 = "waterbottle";
+	//	LinkedListNode node = new LinkedListNode();
+		LinkedListNode node = new LinkedListNode('w');	// how to solve???
 		
-		LLNode<Character> llNode = new LLNode<Character>();
 		for (char c : s1.toCharArray()) {
-			System.out.println( "c: " + c );
-			llNode.appendToTail(c);
+			node.add( c );
 		}
 		
-		for (int i = 0; i < s1.length(); i++) {
-			System.out.print( llNode.get(i) );
-		}
+		CHP.deleteDups(node);
 		
-//		LLNode<Character> llNode2 = CHP.deleteDups(llNode);
-//		for (int i = 0; i < s2.length(); i++) {
-//			System.out.print( llNode2.get(i) );
-//		}
-		
-//		assertEquals( s2, CHP.deleteDups(llNode) );
+		String expected = "waterbol";
+		assertEquals( expected, makeString(node) );
+	//	assertArrayEquals( expected.toCharArray(), makeChars(node, expected.length()) );
 	}
-*/
+	
+	private String makeString(LinkedListNode node) {
+		String str = "";
+		while( node.next != null )	{
+			str += node.data;
+			node = node.next;
+		}
+		
+		return str += node.data;
+	}
+	
+	
+	private char[] makeChars(LinkedListNode node, int len) {
+		char[] str = new char[len];
+		int idx = 0;
+		while( node.next != null )	{
+			str[idx] = node.data;
+			idx++;
+			node = node.next;
+		}
+		
+		str[idx] = node.data;
+		return str;
+	}
+	
 	
 	/*	P: check substring which is rotated string
 	 * 	sol1: 

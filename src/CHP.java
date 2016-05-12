@@ -267,21 +267,20 @@ public class CHP {
 		return s1.concat(s1).contains(s2);
 	}
 
-	public static LLNode<Character> deleteDups(LLNode<Character> llNode) {
-		Hashtable<Character, Boolean> table = new Hashtable<>();
-		LLNode<Character> previous = null;
-		while( llNode != null )	{
-			if( table.containsKey(llNode.value()) )	{
-				previous.next = llNode.next;
+	public static void deleteDups(LinkedListNode node) {
+		Hashtable<Character, Boolean> table = new Hashtable<Character, Boolean>();
+		LinkedListNode previous = null;
+		
+		while( node != null )	{
+			if( table.containsKey(node.data) )	{
+				previous.next = node.next;
 			}
 			else	{
-				table.put(llNode.value(), true);
-				previous = llNode;
+				table.put(node.data, true);
+				previous = node;
 			}
-			llNode = llNode.next;
+			node = node.next;
 		}
-		
-		return previous;
 	}
 
 	//	bino(n, r) = bino(n-1, r-1) + bino(n-1, r)
