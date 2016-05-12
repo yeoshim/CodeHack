@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Hashtable;
 
 public class CHP {
 
@@ -261,6 +262,22 @@ public class CHP {
 		if( s1.length() == 0 )	return false;
 		
 		return s1.concat(s1).contains(s2);
+	}
+
+	public static void deleteDups(LinkedListNode node) {
+		Hashtable<Character, Boolean> table = new Hashtable<Character, Boolean>();
+		LinkedListNode previous = null;
+		
+		while( node != null )	{
+			if( table.containsKey(node.data) )	{
+				previous.next = node.next;
+			}
+			else	{
+				table.put(node.data, true);
+				previous = node;
+			}
+			node = node.next;
+		}
 	}
 
 }

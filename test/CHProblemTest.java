@@ -4,6 +4,50 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: delete duplicate chars in a string which is made by unsorted linked list.
+	 * 	sol1: hashTable 
+	 */
+	@Test
+	public void testDeleteDups() {
+		String s1 = "waterbottle";
+//		LinkedListNode node = new LinkedListNode();
+		LinkedListNode node = new LinkedListNode('w');	// how to solve???
+		
+		for (char c : s1.toCharArray()) {
+			node.add( c );
+		}
+		
+		CHP.deleteDups(node);
+		
+		String expected = "waterbol";
+		assertEquals( expected, makeString(node) );
+//		assertArrayEquals( expected.toCharArray(), makeChars(node, expected.length()) );
+	}
+
+	private String makeString(LinkedListNode node) {
+		String str = "";
+		while( node.next != null )	{
+			str += node.data;
+			node = node.next;
+		}
+		
+		return str += node.data;
+	}
+
+	
+	private char[] makeChars(LinkedListNode node, int len) {
+		char[] str = new char[len];
+		int idx = 0;
+		while( node.next != null )	{
+			str[idx] = node.data;
+			idx++;
+			node = node.next;
+		}
+		
+		str[idx] = node.data;
+		return str;
+	}
+
 	/*	P: check substring which is rotated string
 	 * 	sol1: 
 	 *  if s2 is s1's rotated string, s1 = xy, s2 = yx
