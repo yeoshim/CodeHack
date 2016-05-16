@@ -4,20 +4,27 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
-	/*	P: binomial coefficient(all case selecting Rs items in Ns w/ disorder)
-	 * 	sol1: all case w/ recursion
-	 *  bino(N, R) = bino(N-1, R-1) + bino(N-1, R)
-	 *  bino(0, R) = bini(N, N) = 1
+	/*	P: delete duplicate chars in a string which is made by unsorted linked list.
+	 * 	sol1: hashTable as a buffer 
 	 */
 	@Test
-	public void testBino() {
-		CHP.initCache();
-		assertEquals(6, CHP.bino2(4, 2));
-		assertEquals(6, CHP.bino(4, 2));
+	public void testDeleteDupsNoBuf() {
+		String s1 = "waterbottle";
+		LinkedListNode node = new LinkedListNode('w');	// how to solve???
+		
+		for (char c : s1.toCharArray()) {
+			node.add( c );
+		}
+		
+		CHP.deleteDupsNoBuf(node);
+		
+		String expected = "waterbol";
+		assertEquals( expected, makeString(node) );
 	}
+
 	
 	/*	P: delete duplicate chars in a string which is made by unsorted linked list.
-	 * 	sol1: hashTable 
+	 * 	sol1: hashTable as a buffer 
 	 */
 	@Test
 	public void testDeleteDups() {
@@ -59,7 +66,19 @@ public class CHProblemTest {
 		str[idx] = node.data;
 		return str;
 	}
-	
+
+	/*	P: binomial coefficient(all case selecting Rs items in Ns w/ disorder)
+	 * 	sol1: all case w/ recursion
+	 *  bino(N, R) = bino(N-1, R-1) + bino(N-1, R)
+	 *  bino(0, R) = bini(N, N) = 1
+	 */
+	@Test
+	public void testBino() {
+		CHP.initCache();
+		assertEquals(6, CHP.bino2(4, 2));
+		assertEquals(6, CHP.bino(4, 2));
+	}
+
 	
 	/*	P: check substring which is rotated string
 	 * 	sol1: 

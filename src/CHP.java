@@ -267,22 +267,6 @@ public class CHP {
 		return s1.concat(s1).contains(s2);
 	}
 
-	public static void deleteDups(LinkedListNode node) {
-		Hashtable<Character, Boolean> table = new Hashtable<Character, Boolean>();
-		LinkedListNode previous = null;
-		
-		while( node != null )	{
-			if( table.containsKey(node.data) )	{
-				previous.next = node.next;
-			}
-			else	{
-				table.put(node.data, true);
-				previous = node;
-			}
-			node = node.next;
-		}
-	}
-
 	//	bino(n, r) = bino(n-1, r-1) + bino(n-1, r)
 	public static int bino(int n, int r) {
 		if( r == 0 || n == r )	return 1;
@@ -304,5 +288,41 @@ public class CHP {
 				cache[i][j] = -1;
 			}
 		}
+	}
+
+	public static void deleteDups(LinkedListNode node) {
+		Hashtable<Character, Boolean> table = new Hashtable<Character, Boolean>();
+		LinkedListNode previous = null;
+		
+		while( node != null )	{
+			if( table.containsKey(node.data) )	{
+				previous.next = node.next;
+			}
+			else	{
+				table.put(node.data, true);
+				previous = node;
+			}
+			node = node.next;
+		}
+	}
+	
+	public static void deleteDupsNoBuf(LinkedListNode head) {
+		if( head == null )	return;
+		
+		LinkedListNode current = head;
+		//	N x N travel => Ot(N^2)
+		while( current != null )	{
+			LinkedListNode runner = current;
+			while( runner.next != null )	{
+				if( runner.next.data == current.data )	{
+					runner.next = runner.next.next;
+				}
+				else	{
+					runner = runner.next;
+				}
+			}
+			current = current.next;
+		}
+		
 	}
 }
