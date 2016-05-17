@@ -325,4 +325,48 @@ public class CHP {
 		}
 		
 	}
+
+	public static int printNthToLast(LinkedListNode head, int k) {
+		if( head == null )	return 0;
+		
+		int posFromLast = printNthToLast(head.next, k) + 1;
+		if( posFromLast == k )	System.out.println( k + "-th item: " + head.data );
+		
+		return posFromLast;
+	}
+
+	public static LinkedListNode nthToLast(LinkedListNode head, int k, PosFromLast pos) {
+		if( head == null )	return null;
+		
+		LinkedListNode node = nthToLast(head.next, k, pos );
+		pos.value += 1;
+		if( pos.value == k )	return head;
+		
+		return node;
+	}
+
+	public static LinkedListNode nthToLastIter(LinkedListNode head, int k) {
+		LinkedListNode p1 = head;
+		LinkedListNode p2 = head;
+		
+		// make k interval between p1 and p2
+		for (int i = 0; i < k; i++) {
+			if( p2 == null )	return null;
+			p2 = p2.next;
+		}
+		if( p2 == null )	return null;
+		
+		//	move until p2 == null (last)
+		while( p2 != null )	{
+			p2 = p2.next;
+			p1 = p1.next;
+		}
+		
+		return p1;
+	}
+	
+}
+
+class PosFromLast	{
+	int value = 0;
 }

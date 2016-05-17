@@ -4,8 +4,32 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: find k-th item from last.
+	 * 	sol1: recursion travel => just print		Ot(n), Os(n)
+	 *  sol2: recursion w/ PosFromLast class		Ot(n), Os(n)
+	 *  sol3: iterative w/ 2 Ptrs(w/ k interval)	Ot(n), Os(1)
+	 */
+	@Test
+	public void testNthToLast() {
+		String s1 = "waterbottle";
+		LinkedListNode node = new LinkedListNode('w');	// how to solve???
+		
+		for (char c : s1.toCharArray()) {
+			node.add( c );
+		}
+		
+		CHP.printNthToLast(node, 3);	//	just print because function can't return 2 value.
+		CHP.printNthToLast(node, 5);	//	'o'
+		
+		char expected = 't';
+		assertEquals( expected, CHP.nthToLast(node, 3, new PosFromLast()).data );
+		assertEquals( expected, CHP.nthToLastIter(node, 3).data );
+	}
+
+	
+	
 	/*	P: delete duplicate chars in a string which is made by unsorted linked list.
-	 * 	sol1: hashTable as a buffer 
+	 * 	sol1: Twice travel w/ LL => Ot(n^2), Os(1) 
 	 */
 	@Test
 	public void testDeleteDupsNoBuf() {
@@ -24,7 +48,7 @@ public class CHProblemTest {
 
 	
 	/*	P: delete duplicate chars in a string which is made by unsorted linked list.
-	 * 	sol1: hashTable as a buffer 
+	 * 	sol1: hashTable as a buffer => Ot(n), Os(n) 
 	 */
 	@Test
 	public void testDeleteDups() {
