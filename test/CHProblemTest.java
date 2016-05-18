@@ -4,6 +4,32 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: del one node which is placed middle position in a single linked list. Note: Can't access head node.
+	 * 	sol: node1->node2->node3 
+	 * 		=> copy next-node to cur-node: node2->node2->node3 
+	 * 		=> cur-node link to next-next-node: node2->(node2)->node3
+	 */
+	@Test
+	public void testDeleteNode() {
+		String s1 = "aterbottle";
+		LinkedListNode node = new LinkedListNode('w');
+		
+		for (char c : s1.toCharArray()) {
+			node.add( c );
+		}
+		
+		CHP.deleteNode( node );
+		
+		String expected = "aterbottle";
+		assertEquals( expected, makeString(node) );
+		
+		//	if just one node, can't delete node. => just mark as 'last node' ???
+		LinkedListNode oneNode = new LinkedListNode('w');
+		CHP.deleteNode( oneNode );
+		assertEquals( "w", makeString(oneNode) );
+	}
+
+	
 	/*	P: find k-th item from last.
 	 * 	sol1: recursion travel => just print		Ot(n), Os(n)
 	 *  sol2: recursion w/ PosFromLast class		Ot(n), Os(n)
