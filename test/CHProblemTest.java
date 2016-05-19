@@ -4,6 +4,35 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: partition a linked list on the basis of value x, 
+	 * 		given nodes(< x) should be located in front of nodes(>= x).
+	 * 	sol: use 2 Linked Lists
+	 */
+	@Test
+	public void testPartition() {
+		int[] testData = { 2, 7, 4, 8, 1, 3, 9 };
+		LinkedListNodeG<Integer> head = null;
+
+		for (int i : testData) {
+			head = CHP.addNode( head, i );
+		}
+		
+		for (int i = 0; i < testData.length; i++) {
+			System.out.print( CHP.getNode(head, i).value() + " " );
+		}
+		System.out.println( "" );
+		
+		int x = 7;
+		head = CHP.partition(head, x);
+
+		System.out.println( "partition w/ x :" + x );
+		for (int i = 0; i < testData.length; i++) {
+			System.out.print( CHP.getNode(head, i).value() + " " );
+		}
+		System.out.println( "" );
+	}
+
+	
 	/*	P: del one node which is placed middle position in a single linked list. Note: Can't access head node.
 	 * 	sol: node1->node2->node3 
 	 * 		=> copy next-node to cur-node: node2->node2->node3 
@@ -337,5 +366,19 @@ public class CHProblemTest {
 		
 		String inputStr2 = "inputStrinputStr";
 		assertEquals( false, CHP.checkUniqueChars(inputStr2) );
+	}
+}
+
+class LinkedListNodeG<T> {
+
+	private T value;
+	public LinkedListNodeG<T> next = null;
+
+	public LinkedListNodeG(T value) {
+		this.value = value;
+	}
+
+	public T value() {
+		return this.value;
 	}
 }

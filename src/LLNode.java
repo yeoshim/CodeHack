@@ -12,6 +12,8 @@ public class LLNode<T> {
 	public LLNode() {}
 
 
+	
+	
 	public void appendToTail(T value) {
 		LLNode<T> end = new LLNode<T>(value);
 		this.next = end;

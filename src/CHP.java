@@ -373,7 +373,82 @@ public class CHP {
 		
 		return true;
 	}
-	
+
+	public static LinkedListNodeG<Integer> getNode(LinkedListNodeG<Integer> head, int idx) {
+		if( head == null )	return null;
+		
+		LinkedListNodeG<Integer> retNode = head;
+		int nodeIdx = 0;
+		while( nodeIdx < idx && retNode.next != null )	{
+			retNode = retNode.next;
+			nodeIdx++;
+		}
+		
+		if( nodeIdx == idx )	return retNode;
+		
+		return new LinkedListNodeG<Integer>(-1);
+	}
+
+
+	public static LinkedListNodeG<Integer> addNode(LinkedListNodeG<Integer> head2, int value) {
+		LinkedListNodeG<Integer> head = head2;
+		LinkedListNodeG<Integer> newNode = new LinkedListNodeG<Integer>(value);
+		
+		if( head2 == null )	{
+			head2 = newNode;
+			head = newNode;
+		}
+		else	{
+			while( head2.next != null )	{
+				head2 = head2.next;
+			}
+			head2.next = newNode;
+		}
+		
+		return head;
+	}
+
+	public static LinkedListNodeG<Integer> partition(LinkedListNodeG<Integer> node, int x) {
+		LinkedListNodeG<Integer> beforeStart = null;
+		LinkedListNodeG<Integer> beforeEnd = null;
+		LinkedListNodeG<Integer> afterStart = null;
+		LinkedListNodeG<Integer> afterEnd = null;
+		
+		while( node != null )	{
+			LinkedListNodeG<Integer> next = node.next;
+			node.next = null;
+			
+			if( node.value() < x )	{
+				if( beforeStart == null )	{
+					beforeStart = node;
+					beforeEnd = beforeStart;
+				}
+				else	{
+					beforeEnd.next = node;
+					beforeEnd = node;
+				}
+			}
+			else	{
+				if( afterStart == null )	{
+					afterStart = node;
+					afterEnd = afterStart;
+				}
+				else	{
+					afterEnd.next = node;
+					afterEnd = node;
+				}
+			}
+			node = next;
+		}
+		
+		if( beforeStart == null )	{
+			return afterStart;
+		}
+		
+		beforeEnd.next = afterStart;
+		
+		return beforeStart;
+	}
 }
 
 class PosFromLast	{
