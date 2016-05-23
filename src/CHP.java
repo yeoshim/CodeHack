@@ -449,6 +449,73 @@ public class CHP {
 		
 		return beforeStart;
 	}
+
+	public static LinkedListNodeG<Integer> partition2(LinkedListNodeG<Integer> node, int x) {
+		if( node == null )	return null;
+		
+		LinkedListNodeG<Integer> beforeX = null;
+		LinkedListNodeG<Integer> afterX = null;
+		
+		while( node != null )	{
+			LinkedListNodeG<Integer> next = node.next;	//	because linked list may be modified during traverse processing 
+			if( node.value() < x )	{
+				node.next = beforeX;
+				beforeX = node;
+			}
+			else	{	//	[ax]->[] => (nn)->[ax]->[] => [ax]->[]->[]
+				node.next = afterX;
+				afterX = node;
+			}
+			
+			node = next;
+		}
+
+		if( beforeX == null )	return afterX;
+
+		LinkedListNodeG<Integer> head = beforeX;
+		while( beforeX.next != null )	{
+			beforeX = beforeX.next;
+		}
+		
+		//	move last node(x) to first of afterX
+		LinkedListNodeG<Integer> afterNode = afterX;
+		while( afterNode.next != null )	{
+			afterNode = afterNode.next;
+		}
+		afterNode.next = afterX;
+		afterX = afterNode;
+		
+		beforeX.next = afterX;
+		
+		return head;
+	}
+
+	public static LinkedListNodeG<Integer> addLists(LinkedListNodeG<Integer> number1,
+			LinkedListNodeG<Integer> number2) {
+		if( number1 == null && number2 == null )	return null;
+		
+		LinkedListNodeG<Integer> sumNode = null;
+		int sum = 0;
+
+		while( number1 != null || number2 != null )	{
+			int num1 = 0;
+			int num2 = 0;
+			if( number1 != null )	{
+				num1 = number1.value();
+				number1 = number1.next;
+			}
+			if( number2 != null )	{
+				num2 = number2.value();
+				number2 = number2.next;
+			}
+			
+			sum = num1 + num2 + sum/10;
+			sumNode = addNode( sumNode, sum%10 );
+		}
+		
+		return sumNode;
+	}
+
 }
 
 class PosFromLast	{

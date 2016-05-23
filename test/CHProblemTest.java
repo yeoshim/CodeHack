@@ -4,10 +4,64 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: add 2 numbers which are made by a linked list. 
+	 * 	sol: iterative
+	 */
+	@Test
+	public void testAddLists() {
+		int[] number1Data = { 1, 7, 1, 6 };	//	6171
+		int[] number2Data = { 5, 9, 2 };	//	295
+
+		String result = "6646";	//	6466
+		
+		LinkedListNodeG<Integer> number1 = null;
+		LinkedListNodeG<Integer> number2 = null;
+		
+		for (int i : number1Data) {
+			number1 = CHP.addNode(number1, i);
+		}
+		
+		for (int i : number2Data) {
+			number2 = CHP.addNode(number2, i);
+		}
+
+		LinkedListNodeG<Integer> sum = CHP.addLists( number1, number2 );
+		assertEquals( result, makeStringG(sum) );
+		
+		sum = CHP.addLists( number2, number1 );
+		assertEquals( result, makeStringG(sum) );
+	}
+	
 	/*	P: partition a linked list on the basis of value x, 
 	 * 		given nodes(< x) should be located in front of nodes(>= x).
-	 * 	sol: use 2 Linked Lists
+	 * 	sol: use 2 Linked Lists w/ end ptrs.
+	 *  sol2: use 2 Linked Lists w/o end ptrs.
 	 */
+	@Test
+	public void testPartition2() {
+		int[] testData = { 2, 7, 4, 8, 1, 3, 9 };
+		LinkedListNodeG<Integer> head = null;
+
+		for (int i : testData) {
+			head = CHP.addNode( head, i );
+		}
+		
+//		for (int i = 0; i < testData.length; i++) {
+//			System.out.print( CHP.getNode(head, i).value() + " " );
+//		}
+//		System.out.println( "" );
+		
+//		int x = 7;
+		int x = 2;
+		head = CHP.partition2(head, x);
+
+		System.out.println( "partition2 w/ x :" + x );
+		for (int i = 0; i < testData.length; i++) {
+			System.out.print( CHP.getNode(head, i).value() + " " );
+		}
+		System.out.println( "" );
+	}
+	
 	@Test
 	public void testPartition() {
 		int[] testData = { 2, 7, 4, 8, 1, 3, 9 };
@@ -22,7 +76,8 @@ public class CHProblemTest {
 		}
 		System.out.println( "" );
 		
-		int x = 7;
+//		int x = 7;
+		int x = 2;
 		head = CHP.partition(head, x);
 
 		System.out.println( "partition w/ x :" + x );
@@ -121,6 +176,16 @@ public class CHProblemTest {
 		assertEquals( expected, makeString(node) );
 	//	assertArrayEquals( expected.toCharArray(), makeChars(node, expected.length()) );
 	}
+
+	private String makeStringG(LinkedListNodeG<Integer> node) {
+		String str = "";
+		while( node.next != null )	{
+			str += node.value();
+			node = node.next;
+		}
+		
+		return str += node.value();
+	}
 	
 	private String makeString(LinkedListNode node) {
 		String str = "";
@@ -133,6 +198,7 @@ public class CHProblemTest {
 	}
 	
 	
+	@SuppressWarnings("unused")
 	private char[] makeChars(LinkedListNode node, int len) {
 		char[] str = new char[len];
 		int idx = 0;
