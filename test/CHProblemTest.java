@@ -4,8 +4,6 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
-	
-	
 	/*	P: add 2 numbers which are made by a linked list. 
 	 * 	sol: iterative
 	 */
