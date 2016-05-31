@@ -4,8 +4,32 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: get first node in a circular linked list. (find loop in a linked list. (old problem))
+	 * 	sol: additional pointers (fastRunner(+2)/slowRunner(+1))
+	 *	1. check loop: SP(+1), FP(+2) while(SP != FP)	{ move SP & FP } => if(SP == FP), exist loop
+	 *	2. when collision?: 
+	 *		- if exist non-loop k nodes, move SP & FP K(k mod LOOP_SIZE) step.
+	 *		- And then, SP's position is 0th node in circle, FP's position is Kth node in circle.
+	 *		- SP is K steps behind FP in circle, FP is LOOP_SIZE-K steps behind SP
+	 *		- FP catch-up 1 step SP each time because FP(-2) + SP(+1) = -1 and SP(-1) + FP(+2) = +1
+	 *		=> after LOOP_SIZE-K steps, they will collision.
+	 *	3. find loop start: 
+	 *		- In LOOP_SIZE-K steps, SP's position is LOOP_SIZE-K.
+	 *		=> move SP to Head(because we don't know K) and move SP & FP until they collision. (collision step is K)
+	 */
+	@Test
+	public void testFindFirstOfLoop() {
+		//	just for run
+		LinkedListNodeG<Integer> loop = null;
+		loop = CHP.addNode(loop, 1);
+		
+		LinkedListNodeG<Integer> head = CHP.findFirstOfLoop( loop );
+	}
+	
+	
 	/*	P: add 2 numbers which are made by a linked list. 
 	 * 	sol: iterative
+	 *	꺼꾸로 처리하면 많은 고려사항들을 자동으로 해결됨 
 	 */
 	@Test
 	public void testAddLists() {

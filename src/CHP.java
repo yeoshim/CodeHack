@@ -516,6 +516,31 @@ public class CHP {
 		return sumNode;
 	}
 
+	public static LinkedListNodeG<Integer> findFirstOfLoop(LinkedListNodeG<Integer> head) {
+		//	SP, FP
+		LinkedListNodeG<Integer> slow = head;
+		LinkedListNodeG<Integer> fast = head;
+		
+		//	find collision point(CP)
+		while( fast != null && fast.next != null )	{
+			slow = slow.next;
+			fast = fast.next.next;
+			
+			if( slow == fast )	break;
+		}
+		
+		//	no collision is no loop
+		if( fast == null || fast.next == null )	return null;
+		
+		slow = head;
+		while( slow != fast )	{	//	K step
+			slow = slow.next;
+			fast = fast.next;
+		}
+		
+		return fast;
+	}
+
 }
 
 class PosFromLast	{
