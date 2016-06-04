@@ -1,4 +1,4 @@
-package com.codehack.lecture;
+package com.codehack.lecture.easy;
 
 import java.util.Arrays;
 import java.util.Comparator;

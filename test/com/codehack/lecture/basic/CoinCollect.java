@@ -1,4 +1,4 @@
-package com.codehack.lecture;
+package com.codehack.lecture.basic;
 
 import java.util.HashMap;
 import java.util.Scanner;
