@@ -1,8 +1,14 @@
+//	Mispell
+4
+4 MISSPELL
+1 PROGRAMMING
+7 CONTEST
+3 BALLOON
+
 //	Encrypt
 2
 A
 HelloWorld
-
 
 //	Lecture
 4
