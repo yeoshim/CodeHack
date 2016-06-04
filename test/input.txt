@@ -1,3 +1,9 @@
+//	Encrypt
+2
+A
+HelloWorld
+
+
 //	Lecture
 4
 abbaaccb
