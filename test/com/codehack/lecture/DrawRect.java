@@ -1,3 +1,4 @@
+package com.codehack.lecture;
 
 import java.util.Scanner;
 
