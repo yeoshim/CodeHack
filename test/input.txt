@@ -1,3 +1,10 @@
+//	FixParen
+4
+(} {(<[
+()([)> <({[
+([}{]) <({[
+([)>() <({[
+
 //	XhaeNeung
 2
 two + three = ivef
