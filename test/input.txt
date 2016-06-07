@@ -1,3 +1,28 @@
+//	XhaeNeung
+2
+two + three = ivef
+zero * zero = one
+
+zero * zero = zero
+
+16
+two + one = there
+three + four = svene
+one * three = four
+four * two = eigth
+five * five = two
+five * five = hello
+three + four = svnnn
+three + four = svnne
+three * four = two
+eight + one = nine
+eight + one = nien
+four + three = three
+four - one = teerh
+seven * one = svene
+ten - three = seven
+ten - three = seven
+
 //	URI
 2
 Happy%20Joy%20Joy%21
