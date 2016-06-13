@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Hashtable;
+import java.util.Stack;
 
 public class CHP {
 
@@ -541,6 +542,72 @@ public class CHP {
 		return fast;
 	}
 
+	public static boolean isPalindrome(LinkedListNodeG<Integer> head) {
+		Stack<Integer> stack = new Stack<Integer>();
+		LinkedListNodeG<Integer> fast = head;
+		LinkedListNodeG<Integer> slow = head;
+		
+		//	find middle point
+		while( fast != null && fast.next != null )	{
+			stack.push( slow.value() );
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		
+		//	odd length case, skip middle point
+		if( fast != null )	slow = slow.next;
+		
+		while( slow != null )	{
+			int top = stack.pop().intValue();
+			if( top != slow.value() )	return false;
+			slow = slow.next;
+		}
+		
+		return true;
+	}
+
+	public static boolean isPalindrome2(LinkedListNodeG<Integer> head, int size) {
+		Result ret = isPalindromeRecurse( head, size );
+		return ret.result;
+	}
+
+	private static Result isPalindromeRecurse(LinkedListNodeG<Integer> head, int size) {
+		//	base condition
+		if( head == null || size == 0 )	return new Result( null, true );
+		else if( size == 1 )	return new Result( head.next, true );
+		//	if case size=2(even case), skip one node
+		//	size>=3 => same case size=1
+		else if( size == 2 )	return new Result( head.next.next, head.value() == head.next.value() );
+		
+		/*	#. induction 4 find middle
+		 * recurse( Node n, int len )	{
+		 * 	if( len == 0 || len == 1 )	return middle;
+		 * 	recurse( n.next, len-2 );
+		 * }
+		 * 	
+		 * ...	if( callStack2 [2] == returned callStack1 [2] )
+		 * [2] 3 2 1 0 | len = 3				callStack2
+		 *   3 [2] 1 0 | len = 1, 3 is middle	callStack1
+		 */
+		Result res = isPalindromeRecurse( head.next, size-2 );
+		if( !res.result || res.node == null )	return res;
+		else	{
+			res.result = head.value() == res.node.value();
+			res.node = res.node.next;
+			return res;
+		}
+	}
+
+}
+
+class Result	{
+	LinkedListNodeG<Integer> node;
+	boolean result;
+
+	public Result(LinkedListNodeG<Integer> node, boolean result) {
+		this.result = result;
+		this.node = node;
+	}
 }
 
 class PosFromLast	{

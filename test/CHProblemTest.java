@@ -4,6 +4,37 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: Check Palindrome(회문). 
+	 * 	sol1: reverse check w/ iterative
+	 * 		1. find middle point w/ inserting half of list to stack.
+	 * 		2. 2ptr(fast, slow) 4 finding middle point
+	 * 		3. check if(last == stack.pop)
+	 * 	sol2: reverse check w/ recursion
+	 * 		1. 
+	 */
+	@Test
+	public void testPalindrome() {
+		int[] number1Data = { 0, 1, 2, 3, 2, 1, 0 };
+		LinkedListNodeG<Integer> number1 = null;
+		
+		for (int i : number1Data) {
+			number1 = CHP.addNode(number1, i);
+		}
+		
+		assertEquals( true, CHP.isPalindrome(number1) );
+		assertEquals( true, CHP.isPalindrome2(number1, number1Data.length) );
+
+		int[] number2Data = { 0, 1, 2, 3, 4, 2, 1, 0 };
+		LinkedListNodeG<Integer> number2 = null;
+		
+		for (int i : number2Data) {
+			number2 = CHP.addNode(number2, i);
+		}
+		
+		assertEquals( false, CHP.isPalindrome(number2) );
+		
+	}
+	
 	/*	P: get first node in a circular linked list. (find loop in a linked list. (old problem))
 	 * 	sol: additional pointers (fastRunner(+2)/slowRunner(+1))
 	 *	1. check loop: SP(+1), FP(+2) while(SP != FP)	{ move SP & FP } => if(SP == FP), exist loop
