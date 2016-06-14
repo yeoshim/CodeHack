@@ -4,13 +4,50 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: Make 3 stacks w/ a array. 
+	 * 	sol1: fixed size
+	 * 	- [0, n/3), [n/3, 2n/3), [2n/3, n)
+	 * 
+	 */
+	@Test
+	public void testStackData() throws Exception {
+		int[] number1Data = { 0, 1, 2, 3, 4, 5, 6 };
+		int[] number2Data = { 1, 2, 3, 4, 5 };
+		MyStack2<Integer> stack = new MyStack2<Integer>();
+		
+		for (int item : number1Data) {
+			stack.push( 0, item );
+		}
+		
+		for (int item : number2Data) {
+			stack.push( 1, item );
+		}
+
+		System.out.print( "Stack0:" );
+		for (int i = 0; i < number1Data.length; i++) {
+			System.out.print( " " + stack.pop(0) );
+		}
+		System.out.println();
+
+		System.out.print( "Stack1:" );
+		for (int i = 0; i < number2Data.length; i++) {
+			System.out.print( " " + stack.pop(1) );
+		}
+		System.out.println();
+		System.out.println( "===================" );
+
+	}
+	
+	
 	/*	P: Check Palindrome(회문). 
 	 * 	sol1: reverse check w/ iterative
 	 * 		1. find middle point w/ inserting half of list to stack.
 	 * 		2. 2ptr(fast, slow) 4 finding middle point
 	 * 		3. check if(last == stack.pop)
 	 * 	sol2: reverse check w/ recursion
-	 * 		1. 
+	 * 		...	if( callStack2 [2] == returned callStack1 [2] )
+	 * 		[2] 3 2 1 0 | len = 3				callStack2
+	 *		3 [2] 1 0 | len = 1, 3 is middle	callStack1
 	 */
 	@Test
 	public void testPalindrome() {
