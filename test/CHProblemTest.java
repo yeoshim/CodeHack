@@ -4,10 +4,99 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: Make a stack w/ push, pop, min given Ot(1)
+	 *  sol: 
+	 *  	2. So, BF w/ recursion: store stack status
+	 */
+/*	@Test
+	public void testStackWmin2() throws Exception {
+		int[] number1Data = { 7, 2, 3, 4, 5, 1, 6 };
+		StackWmin stack = new StackWmin();
+		
+		for (int item : number1Data) {
+			stack.push2( item );
+		}
+
+//		while( !stack.isEmpty() )	{
+//			System.out.println( stack.pop2() );
+//		}
+
+		assertEquals( 1, stack.min2() );
+		stack.pop2();	//	6
+		stack.pop2();	//	1
+		assertEquals( 2, stack.min2() );
+
+	}
+*/
+	
+	/*	P: Make a stack w/ push, pop, min given Ot(1)
+	 *  sol: 
+	 *  	1. BF: w/ minVal but if change, Os(n).
+	 */
+	@Test
+	public void testStackWmin() throws Exception {
+		int[] number1Data = { 7, 2, 3, 4, 5, 1, 6 };
+		StackWmin stack = new StackWmin();
+		
+		for (int item : number1Data) {
+			stack.push( item );
+		}
+
+//		while( !stack.isEmpty() )	{
+//			System.out.println( stack.pop() );
+//		}
+
+		assertEquals( 1, stack.min() );
+		stack.pop();	//	6
+		stack.pop();	//	1
+		assertEquals( 2, stack.min() );
+
+	}
+	
+	/*	P: Make 3 stacks w/ a array. 
+	 *  sol2: dynamic size
+	 *  - if no space, extends space and move data
+	 *  - make circular array
+	 */
+	@Test
+	public void testDStackData() throws Exception {
+		int[] number1Data = { 7, 1, 2, 3, 4, 5, 6 };
+		int[] number2Data = { 1, 2, 3, 4, 5 };
+		DStack<Integer> stack = new DStack<Integer>();
+		
+		for (int item : number1Data) {
+			stack.push( 0, item );
+		}
+		
+		for (int item : number2Data) {
+			stack.push( 1, item );
+		}
+
+		//	for test
+//		for(Object item: stack.getBuf() )	{
+//			System.out.print( " " + item );
+//		}
+//		System.out.println("");
+		
+		System.out.print( "DStack0:" );
+		for (int i = 0; i < number1Data.length; i++) {
+			System.out.print( " " + stack.pop(0) );
+		}
+		System.out.println();
+
+		System.out.print( "DStack1:" );
+		for (int i = 0; i < number2Data.length; i++) {
+			System.out.print( " " + stack.pop(1) );
+		}
+		System.out.println();
+		System.out.println( "===================" );
+
+	}
+
+	
 	/*	P: Make 3 stacks w/ a array. 
 	 * 	sol1: fixed size
 	 * 	- [0, n/3), [n/3, 2n/3), [2n/3, n)
-	 * 
 	 */
 	@Test
 	public void testStackData() throws Exception {

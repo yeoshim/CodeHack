@@ -7,7 +7,7 @@ public class MyStack2<T> {
 	private T[] buffer = (T[]) new Object[stackSize*3];
 
 	public void push(int stackNum, T item) throws Exception {
-		if( stackPtr [stackNum] >= stackSize  )	{
+		if( stackPtr[stackNum] >= stackSize  )	{
 			throw new Exception( "Out of space" );
 		}
 		
@@ -25,7 +25,7 @@ public class MyStack2<T> {
 		int idx = stackNum * stackSize + stackPtr[stackNum];
 		stackPtr[stackNum]--;
 		T item = buffer[idx];
-		buffer[idx] = (T) new Integer(0);
+		buffer[idx] = (T) new Integer(0);	//	for test
 		
 		return item;
 	}
