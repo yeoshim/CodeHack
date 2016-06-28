@@ -6,9 +6,11 @@ public class CHProblemTest {
 
 	/*	P: Make a stack w/ push, pop, min given Ot(1)
 	 *  sol: 
-	 *  	2. So, BF w/ recursion: store stack status
+	 *  	2. store minValue w/ a stack based on recursion call stack.
+	 *  	if fist item of large stacks is min value, 
+	 *  		sol1 is Os(n), sol2 is Os(1)
 	 */
-/*	@Test
+	@Test
 	public void testStackWmin2() throws Exception {
 		int[] number1Data = { 7, 2, 3, 4, 5, 1, 6 };
 		StackWmin stack = new StackWmin();
@@ -25,13 +27,11 @@ public class CHProblemTest {
 		stack.pop2();	//	6
 		stack.pop2();	//	1
 		assertEquals( 2, stack.min2() );
-
 	}
-*/
 	
 	/*	P: Make a stack w/ push, pop, min given Ot(1)
 	 *  sol: 
-	 *  	1. BF: w/ minVal but if change, Os(n).
+	 *  	1. store minValue based on recursion call stack, but Os(n).
 	 */
 	@Test
 	public void testStackWmin() throws Exception {
@@ -41,10 +41,6 @@ public class CHProblemTest {
 		for (int item : number1Data) {
 			stack.push( item );
 		}
-
-//		while( !stack.isEmpty() )	{
-//			System.out.println( stack.pop() );
-//		}
 
 		assertEquals( 1, stack.min() );
 		stack.pop();	//	6
