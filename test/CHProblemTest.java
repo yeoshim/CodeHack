@@ -4,6 +4,27 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: Make a SetOfStacks
+	 *  sol: SetOfStacks has stack list as ArrayList()
+	 */
+	@Test
+	public void testSetOfStacks() throws Exception {
+		int[] number1Data = { 7, 2, 3, 4, 5, 1, 6 };
+		SetOfStacks stack = new SetOfStacks();
+		
+		for (int item : number1Data) {
+			stack.push( item );
+		}
+
+//		while( !stack.isEmpty() )	{
+//			System.out.println( stack.pop() );
+//		}
+
+		assertEquals( 6, stack.pop() );
+		assertEquals( 1, stack.pop() );
+	}
+
+	
 	/*	P: Make a stack w/ push, pop, min given Ot(1)
 	 *  sol: 
 	 *  	2. store minValue w/ a stack based on recursion call stack.
