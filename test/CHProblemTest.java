@@ -4,6 +4,29 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: Make a popAt(int idx) w/ SetOfStacks
+	 *  sol: SetOfStacks has stack list as ArrayList()
+	 */
+	@Test
+	public void testPopAt() throws Exception {
+		int[] number1Data = { 7, 2, 3, 4, 5, 1, 6 };
+		SetOfStacks stack = new SetOfStacks();
+		
+		for (int item : number1Data) {
+			stack.push( item );
+		}
+
+		assertEquals( 6, stack.pop() );
+		assertEquals( 3, stack.popAt(1) );
+		assertEquals( 1, stack.popAt(2) );
+		
+		stack.push( 9 );	//	72459
+		assertEquals( 4, stack.popAt(1) );
+		assertEquals( 9, stack.popAt(2) );
+		assertEquals( 5, stack.popAt(1) );
+	}
+
+	
 	/*	P: Make a SetOfStacks
 	 *  sol: SetOfStacks has stack list as ArrayList()
 	 */
