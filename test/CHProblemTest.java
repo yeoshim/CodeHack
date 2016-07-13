@@ -4,6 +4,30 @@ import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: Hanoi Top Problem
+	 *  sol: use stack & buf w/ recursion
+	 */
+	@Test
+	public void testMoveDisks() throws Exception {
+		int n = 3;
+		Tower[] towers = new Tower[n];
+		for (int i = 0; i < n; i++) {
+			towers[i] = new Tower(i);
+		}
+		
+		for (int i = n-1; i >= 0; i--) {
+			towers[0].add( i );
+		}
+		
+		towers[0].print();
+		towers[2].print();
+		
+		System.out.println( "Move disks from 0 to 2" );
+		towers[0].moveDisks( n, towers[2], towers[1] );
+		towers[0].print();
+		towers[2].print();
+	}
+	
 	/*	P: Make a popAt(int idx) w/ SetOfStacks
 	 *  sol: SetOfStacks has stack list as ArrayList()
 	 */
