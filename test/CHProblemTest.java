@@ -1,9 +1,30 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: Queue w/ 2 stacks
+	 *  sol: stack1 4 add, stack2 4 pop, if stack2 is empty move stack1 to stack2
+	 */
+	@Test
+	public void testQueueWStacks() throws Exception {
+		int[] number1Data = { 7, 2, 3, 4, 5, 1, 6 };
+		QueueWStack<Integer> queue = new QueueWStack<Integer>();
+		
+		for (int item : number1Data) {
+			queue.add( item );
+		}
+
+		assertEquals( 7, (int)queue.peek() );
+		assertEquals( 7, (int)queue.pop() );
+		assertEquals( 2, (int)queue.peek() );
+	}
+	
 	/*	P: Hanoi Top Problem
 	 *  sol: use stack & buf w/ recursion
 	 */
@@ -244,6 +265,7 @@ public class CHProblemTest {
 		LinkedListNodeG<Integer> loop = null;
 		loop = CHP.addNode(loop, 1);
 		
+		@SuppressWarnings("unused")
 		LinkedListNodeG<Integer> head = CHP.findFirstOfLoop( loop );
 	}
 	
