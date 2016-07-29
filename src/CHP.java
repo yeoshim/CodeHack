@@ -598,6 +598,19 @@ public class CHP {
 		}
 	}
 
+	public static Stack<Integer> sortAsc(Stack<Integer> stack) {
+		Stack<Integer> sorted = new Stack<Integer>();
+		while( !stack.isEmpty() )	{
+			int tmp = stack.pop();
+			while( !sorted.isEmpty() && sorted.peek() < tmp )	{
+				stack.push( sorted.pop() );
+			}
+			sorted.push( tmp );
+		}
+		
+		return sorted;
+	}
+
 }
 
 class Result	{

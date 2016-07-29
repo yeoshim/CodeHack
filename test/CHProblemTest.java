@@ -4,10 +4,32 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Stack;
+
 import org.junit.Test;
 
 public class CHProblemTest {
 
+	/*	P: SortedStack w/ ASC
+	 *  sol: 2 while w/ 2 stacks
+	 */
+	@Test
+	public void testSortedStack() throws Exception {
+		int[] number1Data = { 7, 2, 3, 4, 5, 1, 6 };
+		Stack<Integer> stack = new Stack<Integer>();
+		
+		for (int item : number1Data) {
+			stack.push( item );
+		}
+
+		Stack<Integer> sorted = CHP.sortAsc( stack );
+		
+		assertEquals( 1, (int)sorted.peek() );
+		assertEquals( 1, (int)sorted.pop() );
+		assertEquals( 2, (int)sorted.peek() );
+	}
+
+	
 	/*	P: Queue w/ 2 stacks
 	 *  sol: stack1 4 add, stack2 4 pop, if stack2 is empty move stack1 to stack2
 	 */
